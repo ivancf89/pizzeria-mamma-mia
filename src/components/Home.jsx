@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from './Header';
 import CardPizza from './CardPizza';
+import Register from './Register';
+import Login from './Login';
 
 const Home = () => {
   const pizzas = [
@@ -8,7 +10,7 @@ const Home = () => {
       name: 'Napolitana',
       price: 5950,
       ingredients: ['mozzarella', 'tomates', 'jamón', 'orégano'],
-      img: 'https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_cl.jpg?alt=media&token=6a9a33da-5c00-49d4-9080-784dcc87ec2c',
+     img: 'https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_cl.jpg?alt=media&token=6a9a33da-5c00-49d4-9080-784dcc87ec2c',
     },
     {
       name: 'Española',
@@ -28,6 +30,10 @@ const Home = () => {
     <>
       <Header />
       <div className="container">
+        <h2>Formulario de Registro</h2>
+        <Register />
+        <h2>Formulario de Login</h2>
+        <Login />
         <div className="row">
           {pizzas.map((pizza, index) => (
             <div className="col-md-4" key={index}>

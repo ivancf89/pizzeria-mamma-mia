@@ -1,21 +1,22 @@
-import { useState } from 'react'
-import './App.css'
-import Navbar from './components/Navbar'
-import Home from './components/Home'
-import Footer from './components/Footer'
-
-// La Tercera imagen está rota
-//La imagen del header no viene 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Footer from './components/Footer';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
-
   return (
-    <>
-<Navbar/>
-<Home/>
-<Footer/>
-    </>
-  )
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+      <Footer />
+    </Router>
+  );
 }
 
-export default App
+export default App;
