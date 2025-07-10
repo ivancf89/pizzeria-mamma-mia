@@ -1,51 +1,60 @@
 import React, { useState } from 'react';
 
 const Register = () => {
-  // Estados para cada campo del formulario
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
 
-  // Función para manejar el envío del formulario
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevenir el envío por defecto del formulario
-    if (!username.trim() || !email.trim() || !password.trim()) {
-      setError(true); // Si algún campo está vacío, mostrar error
-    } else {
-      setError(false); // Si todos los campos están llenos, continuar
-      console.log('Registrando usuario:', { username, email, password });
-      // Aquí puedes agregar código para enviar los datos a un servidor más adelante
+    e.preventDefault();
+
+    // Validaciones
+    if (!email || !password || !confirmPassword) {
+      setError('Todos los campos son obligatorios');
+      setSuccess(false);
+      return;
     }
+
+    if (password.length < 6) {
+      setError('La contraseña debe tener al menos 6 caracteres');
+      setSuccess(false);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError('Las contraseñas no coinciden');
+      setSuccess(false);
+      return;
+    }
+
+    // Si pasa todo
+    setError('');
+    setSuccess(true);
+    console.log('Registrando usuario:', { email, password });
   };
 
   return (
-    <div>
+    <div className="container mt-4">
       <h2>Registro</h2>
-      {error && <p style={{ color: 'red' }}>Todos los campos son obligatorios</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {success && <p style={{ color: 'green' }}>Registro exitoso 🎉</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
           <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div>
-          <label>Password:</label>
+          <label>Contraseña:</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </div>
+        <div>
+          <label>Confirmar Contraseña:</label>
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
         <button type="submit">Registrarse</button>

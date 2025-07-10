@@ -1,28 +1,31 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; 
+import { Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbar = () => {
   const total = 25000;
   const token = false;
 
+  const formatCurrency = (value) => value.toLocaleString('es-CL');
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">Pizzería Mamma Mía</a>
+        <Link className="navbar-brand" to="/">Pizzería Mamma Mía</Link>
         <div className="navbar-nav">
-          <a className="nav-link" href="#">Home</a>
+          <Link className="nav-link" to="/">Home</Link>
           {token ? (
             <>
-              <a className="nav-link" href="#">Profile</a>
-              <a className="nav-link" href="#">Logout</a>
+              <Link className="nav-link" to="/profile">Profile</Link>
+              <Link className="nav-link" to="/logout">Logout</Link>
             </>
           ) : (
             <>
-              <a className="nav-link" href="#">Login</a>
-              <a className="nav-link" href="#">Register</a>
+              <Link className="nav-link" to="/login">Login</Link>
+              <Link className="nav-link" to="/register">Register</Link>
             </>
           )}
-          <span className="nav-link">Total: ${total}</span>
+          <span className="nav-link">Total: ${formatCurrency(total)}</span>
         </div>
       </div>
     </nav>

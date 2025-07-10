@@ -1,43 +1,44 @@
 import React, { useState } from 'react';
 
 const Login = () => {
-  // Estados para cada campo del formulario
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
 
-  // Función para manejar el envío del formulario
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevenir el envío por defecto del formulario
-    if (!email.trim() || !password.trim()) {
-      setError(true); // Si algún campo está vacío, mostrar error
-    } else {
-      setError(false); // Si todos los campos están llenos, continuar
-      console.log('Iniciando sesión con:', { email, password });
-      // Aquí puedes agregar código para enviar los datos a un servidor más adelante
+    e.preventDefault();
+
+    if (!email || !password) {
+      setError('Email y contraseña son obligatorios');
+      setSuccess(false);
+      return;
     }
+
+    if (password.length < 6) {
+      setError('La contraseña debe tener al menos 6 caracteres');
+      setSuccess(false);
+      return;
+    }
+
+    setError('');
+    setSuccess(true);
+    console.log('Iniciando sesión con:', { email, password });
   };
 
   return (
-    <div>
+    <div className="container mt-4">
       <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>Email y password son obligatorios</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {success && <p style={{ color: 'green' }}>Login exitoso 🔐</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <label>Contraseña:</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <button type="submit">Iniciar Sesión</button>
       </form>
