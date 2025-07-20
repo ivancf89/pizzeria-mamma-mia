@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
+import Cart from './components/Cart'; // asegúrate que exista
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </Router>
@@ -20,4 +22,3 @@ function App() {
 }
 
 export default App;
-

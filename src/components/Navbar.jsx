@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbar = () => {
-  const total = 25000;
-  const token = false;
+  const total = 25000; // valor temporal
+  const token = false; // valor temporal
 
   const formatCurrency = (value) => value.toLocaleString('es-CL');
 
@@ -25,6 +25,7 @@ const Navbar = () => {
               <Link className="nav-link" to="/register">Register</Link>
             </>
           )}
+          <Link className="nav-link" to="/cart">🛒 Carrito</Link>
           <span className="nav-link">Total: ${formatCurrency(total)}</span>
         </div>
       </div>
