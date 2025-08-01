@@ -1,12 +1,16 @@
-# React + Vite
+# Hito 4 - Pizzería Mamma Mía
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este hito cumple con los siguientes requisitos:
 
-Currently, two official plugins are available:
+- ✅ `Home.jsx`: consume la API en `http://localhost:5000/api/pizzas` usando `useEffect`.
+- ✅ `Pizza.jsx`: muestra los detalles de la pizza con ID `p001` desde la API.
+- ✅ Se utiliza `fetch` y manejo de estado con `useState` y `useEffect`.
+- ✅ El componente `Pizza` muestra: nombre, precio, ingredientes, imagen y descripción.
+- ⚠️ El botón "Añadir al carrito" no tiene funcionalidad aún (como indica el enunciado).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Instrucciones para probar
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clonar el repositorio del backend proporcionado por el curso.
+2. Ejecutar `npm install` y `npm start` en el backend (corre en `localhost:5000`).
+3. En otro terminal, iniciar el frontend: `npm start` (en `localhost:3000`).
+4. Verificar que se muestre la información de la pizza `p001`.
