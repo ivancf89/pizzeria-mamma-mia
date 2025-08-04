@@ -1,19 +1,19 @@
-// src/components/Home.jsx
+// src/pages/Home.jsx
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import CardPizza from '../components/CardPizza';
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 
 const Home = () => {
   const [pizzas, setPizzas] = useState([]);
+  const { addToCart } = useContext(CartContext); // ✅ Usando el contexto
 
   useEffect(() => {
     fetch('http://localhost:5000/api/pizzas')
-      .then((res) => {
-        if (!res.ok) throw new Error('Error al cargar las pizzas');
-        return res.json();
-      })
-      .then((data) => setPizzas(data))
-      .catch((error) => console.error('Error al consumir la API:', error));
+      .then(res => res.json())
+      .then(data => setPizzas(data))
+      .catch(error => console.error('Error al cargar las pizzas:', error));
   }, []);
 
   return (
@@ -29,7 +29,7 @@ const Home = () => {
                 price={pizza.price}
                 ingredients={pizza.ingredients}
                 img={pizza.img}
-                onAdd={() => {}} // sin funcionalidad aún
+                onAdd={() => addToCart(pizza)} // ✅ Llama a la función del contexto
               />
             </div>
           ))}

@@ -1,9 +1,7 @@
 // src/App.jsx
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-
-// Páginas
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -14,7 +12,7 @@ import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <Router>
+    <CartProvider>
       <Navbar />
       <main className="flex-grow-1">
         <Routes>
@@ -27,8 +25,7 @@ function App() {
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </main>
-      <Footer />
-    </Router>
+    </CartProvider>
   );
 }
 
