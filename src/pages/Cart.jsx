@@ -20,14 +20,26 @@ const Cart = () => {
                   <strong>{item.name}</strong> - ${item.price.toLocaleString('es-CL')} x {item.quantity}
                 </div>
                 <div>
-                  <button className="btn btn-sm btn-secondary me-2" onClick={() => decrease(item.id)}>-</button>
-                  <button className="btn btn-sm btn-secondary me-2" onClick={() => increase(item.id)}>+</button>
+                  <button
+                    className="btn btn-sm btn-secondary me-2"
+                    onClick={() => decrease(item.id)}
+                  >
+                    -
+                  </button>
+                  <button
+                    className="btn btn-sm btn-secondary me-2"
+                    onClick={() => increase(item.id)}
+                  >
+                    +
+                  </button>
                 </div>
               </li>
             ))}
           </ul>
           <p className="mt-3"><strong>Total: ${total.toLocaleString('es-CL')}</strong></p>
-          <button className="btn btn-danger" onClick={clearCart}>Limpiar carrito</button>
+          <button className="btn btn-danger" onClick={clearCart}>
+            Limpiar carrito
+          </button>
         </>
       )}
     </div>

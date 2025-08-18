@@ -1,12 +1,17 @@
 // src/components/Navbar.jsx
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
 const Navbar = () => {
-  const total = 25000; // temporal
-  const token = false; // temporal
-
+  const { cart } = useContext(CartContext);
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const formatCurrency = (value) => value.toLocaleString('es-CL');
+  const token = localStorage.getItem('token');
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -20,13 +25,19 @@ const Navbar = () => {
               <Link className="nav-link" to="/register">Register</Link>
             </>
           ) : (
-            <>
-              <Link className="nav-link" to="/profile">Profile</Link>
-              <Link className="nav-link" to="/login">Logout</Link>
-            </>
+            <Link className="nav-link" to="/profile">Profile</Link>
           )}
           <Link className="nav-link" to="/cart">🛒 Carrito</Link>
           <span className="nav-link">Total: ${formatCurrency(total)}</span>
+          {token && (
+            <Link
+              className="nav-link"
+              to="/login"
+              onClick={handleLogout}
+            >
+              Logout
+            </Link>
+          )}
         </div>
       </div>
     </nav>

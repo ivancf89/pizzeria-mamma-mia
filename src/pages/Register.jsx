@@ -1,4 +1,6 @@
+// src/pages/Register.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -6,8 +8,9 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validaciones
@@ -29,35 +32,72 @@ const Register = () => {
       return;
     }
 
-    // Si pasa todo
-    setError('');
-    setSuccess(true);
-    console.log('Registrando usuario:', { email, password });
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error al registrar');
+      }
+
+      const data = await response.json();
+      console.log('Registro exitoso:', data);
+      setSuccess(true);
+      setError('');
+      setTimeout(() => navigate('/login'), 1500); // Redirige al login
+    } catch (err) {
+      setError(err.message);
+      setSuccess(false);
+    }
   };
 
   return (
     <div className="container mt-4">
-      <h2>Registro</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>Registro exitoso 🎉</p>}
+      <h2>Registrarse</h2>
+      {error && <div className="alert alert-danger">{error}</div>}
+      {success && <div className="alert alert-success">¡Registro exitoso! Redirigiendo...</div>}
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="mb-3">
           <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="form-control"
+            placeholder="ivan@hola.com"
+            required
+          />
         </div>
-        <div>
+        <div className="mb-3">
           <label>Contraseña:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="form-control"
+            placeholder="ivan123"
+            required
+          />
         </div>
-        <div>
-          <label>Confirmar Contraseña:</label>
+        <div className="mb-3">
+          <label>Confirmar contraseña:</label>
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            className="form-control"
+            required
           />
         </div>
-        <button type="submit">Registrarse</button>
+        <button type="submit" className="btn btn-success">
+          Registrarse
+        </button>
       </form>
     </div>
   );

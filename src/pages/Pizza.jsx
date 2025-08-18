@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
-import { CartContext } from '../context/CartContext'; // Importa el contexto-- CHEEECK
+import { CartContext } from '../context/CartContext';
 
 const Pizza = () => {
   const { id } = useParams();
   const [pizza, setPizza] = useState(null);
-  const { addToCart } = useContext(CartContext); //  Usa el contexto
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/pizzas/${id}`)
@@ -37,7 +37,6 @@ const Pizza = () => {
             ))}
           </ul>
           <p>{pizza.description}</p>
-          {/* Botón conectado al carrito */}
           <button
             className="btn btn-primary"
             onClick={() => addToCart(pizza)}

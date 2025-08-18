@@ -1,11 +1,19 @@
+// src/components/Footer.jsx
 import React from 'react';
 
 const Footer = () => {
   return (
-    <footer>
-      <p>&copy; 2025 Pizzeria Mamma Mia! - All rights reserved.</p>
+    <footer className="bg-dark text-white text-center py-3 mt-5">
+      <div className="container">
+        <p className="mb-0">
+          &copy; {new Date().getFullYear()} Pizzería Mamma Mía. Todos los derechos reservados.
+        </p>
+        <p className="mb-0">
+          Hecho con 💜 por Ivs
+        </p>
+      </div>
     </footer>
   );
-}
+};
 
 export default Footer;

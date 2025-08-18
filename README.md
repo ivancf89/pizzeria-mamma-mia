@@ -1,12 +1,56 @@
-# React + Vite
+# 🍕 Pizzería Mamma Mía - Hito 8 Final
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+¡Hola! 👋  
+Este es el **Hito 8 final** de mi proyecto en React: **Pizzería Mamma Mía**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧩 ¿Qué hice?
 
-## Expanding the ESLint configuration
+Después de 8 hitos, **todo funciona**:
+- ✅ Consumo de APIs con `fetch` y `useEffect`.
+- ✅ React Router I y II: rutas dinámicas (`/pizza/:id`) y protegidas (`/profile`).
+- ✅ Context API: carrito global que se actualiza en tiempo real.
+- ✅ Autenticación con JWT: login real, token en `localStorage`, perfil del usuario.
+- ✅ Diseño responsive: todas las páginas usan todo el ancho y alto.
+- ✅ Botón de carrito en el `Navbar` con total sincronizado.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🔐 Autenticación con JWT
+
+- Usé `POST /api/auth/login` para autenticar.
+- Guardé el token en `localStorage`.
+- Protegí `/profile` con `PrivateRoute`.
+- Cerré sesión eliminando el token.
+
+> 🔑 Credenciales de prueba:
+> - Email: `ivan@hola.com`
+> - Contraseña: `ivan123`
+
+👉 Puedes registrarte con cualquier email y contraseña.
+
+---
+
+## 🛒 Carrito global
+
+- El carrito se actualiza desde `Home` y desde `Pizza`.
+- El total se muestra en el `Navbar`.
+- Funciona con `Context`.
+
+---
+
+## 🧠 Cómo probarlo
+
+1. Levanta el backend:
+   ```bash
+   cd simple-api-backend-nodejs-express-fs-json-jwt-main
+   npm start
+
+🚀 Tecnologías usadas
+React + Vite
+React Router DOM
+Context API
+JWT (JSON Web Tokens)
+Bootstrap
+
